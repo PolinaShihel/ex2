@@ -77,12 +77,12 @@ void Card::applyEncounter(Player& player) const{
 void Card::printInfo() const {
     switch(this->m_effect){
         case(CardType::Battle):
-            printBattleCardInfo(this);
+            printBattleCardInfo(this->m_stats);
         case(CardType::Buff):
-            printBuffCardInfo(this);
+            printBuffCardInfo(this->m_stats);
         case(CardType::Heal):
-            printHealCardInfo(this);
+            printHealCardInfo(this->m_stats);
         case(CardType::Treasure):
-            printTreasureCardInfo(this);
+            printTreasureCardInfo(this->m_stats);
     }
 }
