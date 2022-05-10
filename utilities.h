@@ -53,7 +53,6 @@ struct CardStats{
  */
 void printBattleCardInfo(const CardStats& card);
 
-
 /*
  * Prints info of a Battle outcomes:
  *
