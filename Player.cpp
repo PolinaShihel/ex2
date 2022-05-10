@@ -2,17 +2,16 @@
 #include "utilities.h"
 #include "player.h"
 
-using std::string;
 const int END_STRING = 1;
 
 #define MAX(x,y) x > y ? x : y
 #define MIN(x,y) x < y ? x : y
 
-Player::Player(const string playerName, int initialForce, int maxHp) :
+Player::Player(const string playerName, int maxHp, int initialForce) :
     m_name(playerName), m_force(initialForce), m_maxHp(maxHp), m_hp(maxHp)
 {
     m_level = INITIAL_LEVEL;
-    m_coins = INITIAL_COINS;    
+    m_coins = INITIAL_COINS;
     if (maxHp <= MIN_HP) {
         m_maxHp = m_hp = DEFAULT_MAX_HP;
     }
@@ -24,7 +23,7 @@ Player::Player(const string playerName, int initialForce, int maxHp) :
 void Player::printInfo() const
 {
     int nameLength = this->m_name.length();
-    char* playerName = new char[nameLength+END_STRING];
+    char* playerName = new char[nameLength + END_STRING];
     strcpy(playerName, this->m_name.c_str());
     printPlayerInfo(playerName, this->m_level, this->m_force, this->m_hp, this->m_coins);
     delete[] playerName;

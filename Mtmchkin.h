@@ -27,7 +27,7 @@ public:
      * @result
      *      An instance of Mtmchkin
     */
-    Mtmchkin(const char* playerName, const Card* cardsArray, int numOfCards);
+    Mtmchkin(const string playerName, const Card* cardsArray, int numOfCards);
 
     /*
      * D'tor of Mtmchkin class.

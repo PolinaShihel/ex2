@@ -24,7 +24,7 @@ public:
      * @return
      *      A new instance of Player.
     */
-    Player(const string playerName, int initialForce = DEFAULT_INITIAL_FORCE, int maxHP = DEFAULT_MAX_HP);
+    Player(const string playerName, int maxHP = DEFAULT_MAX_HP, int initialForce = DEFAULT_INITIAL_FORCE);
 
     /*
      * Copy C'tor od Player class
@@ -131,8 +131,7 @@ private:
     unsigned int m_force;
     unsigned int m_maxHp;
     unsigned int m_hp;
-    unsigned int m_coins;
-
+    int m_coins;
 };
 
 
