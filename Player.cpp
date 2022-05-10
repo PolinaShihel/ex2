@@ -60,6 +60,9 @@ void Player::addCoins(int addedCoins)
 
 bool Player::pay(int payment)
 {
+    if (payment <= 0) {
+        return true;
+    }
     if (this->m_coins - payment < 0) {
         return false;
     }

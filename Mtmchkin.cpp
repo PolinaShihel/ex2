@@ -18,6 +18,9 @@ GameStatus Mtmchkin::getGameStatus() const
 
 void Mtmchkin::playNextCard()
 {
+	if (m_gameStatus != GameStatus::MidGame) {
+		return;
+	}
 	Card topCard = m_cards[m_topCardIndex];
 	topCard.printInfo();
 	topCard.applyEncounter(this->m_player);
