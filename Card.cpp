@@ -1,7 +1,8 @@
 #include "Card.h"
+#include "Player.h"
 
-
-Card::Card(CardType type, const CardStats& stats) : m_effect(type), m_stats(stats){
+Card::Card(CardType type, const CardStats& stats) : m_effect(type), m_stats(stats) 
+{
 }
 
 /*
@@ -12,15 +13,16 @@ Card::Card(CardType type, const CardStats& stats) : m_effect(type), m_stats(stat
  * @return
  *      void.
  */
-static void battleEncounter(Player& player, const Cardstats& stats){
-    if(stats.force <= player.getAttackStrength()){
+static void battleEncounter(Player& player, const CardStats& stats) 
+{
+    if (stats.force <= player.getAttackStrength()) {
         printBattleResult(true);
         player.addCoins(stats.loot);
         player.levelUp();
         return;
     }
     printBattleResult(false);
-    player->damage(stats.hpLossOnDefeat);
+    player.damage(stats.hpLossOnDefeat);
 }
 
 /*
@@ -31,7 +33,8 @@ static void battleEncounter(Player& player, const Cardstats& stats){
  * @return
  *      void.
  */
-static void buffEncounter(Player& player, CardStats& stats){
+static void buffEncounter(Player& player, const CardStats& stats) 
+{
     player.pay(stats.cost);
     player.buff(stats.buff);
 }
@@ -44,7 +47,8 @@ static void buffEncounter(Player& player, CardStats& stats){
  * @return
  *      void.
  */
-static void healEncounter(Player& player, CardStats& stats) {
+static void healEncounter(Player& player, const CardStats& stats) 
+{
     player.pay(stats.cost);
     player.heal(stats.heal);
 }
@@ -57,32 +61,35 @@ static void healEncounter(Player& player, CardStats& stats) {
  * @return
  *      void.
  */
-static void treasureEncounter(Player& player, CardStats& stats) {
+static void treasureEncounter(Player& player, const CardStats& stats) 
+{
     player.addCoins(stats.loot);
 }
 
-void Card::applyEncounter(Player& player) const{
-    switch(this->m_effect){
-        case(CardType::Battle):
-            battleEncounter(player, this->m_stats);
-        case(CardType::Buff):
-            buffEncounter(player, this->m_stats);
-        case(CardType::Heal):
-            healEncounter(player, this->m_stats);
-        case(CardType::Treasure):
-            treasureEncounter(player, this->m_stats);
+void Card::applyEncounter(Player& player) const 
+{
+    switch (this->m_effect) {
+    case(CardType::Battle):
+        battleEncounter(player, this->m_stats);
+    case(CardType::Buff):
+        buffEncounter(player, this->m_stats);
+    case(CardType::Heal):
+        healEncounter(player, this->m_stats);
+    case(CardType::Treasure):
+        treasureEncounter(player, this->m_stats);
     }
 }
 
-void Card::printInfo() const {
-    switch(this->m_effect){
-        case(CardType::Battle):
-            printBattleCardInfo(this->m_stats);
-        case(CardType::Buff):
-            printBuffCardInfo(this->m_stats);
-        case(CardType::Heal):
-            printHealCardInfo(this->m_stats);
-        case(CardType::Treasure):
-            printTreasureCardInfo(this->m_stats);
+void Card::printInfo() const 
+{
+    switch (this->m_effect) {
+    case(CardType::Battle):
+        printBattleCardInfo(this->m_stats);
+    case(CardType::Buff):
+        printBuffCardInfo(this->m_stats);
+    case(CardType::Heal):
+        printHealCardInfo(this->m_stats);
+    case(CardType::Treasure):
+        printTreasureCardInfo(this->m_stats);
     }
 }

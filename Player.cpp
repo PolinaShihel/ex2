@@ -2,13 +2,13 @@
 #include "utilities.h"
 #include "player.h"
 
-using std::cout;
-using std::min;
-using std::max;
+#define MAX(x,y) x > y ? x : y
+#define MIN(x,y) x < y ? x : y
 
-Player::Player(string playerName, unsigned int initialForce, unsigned int maxHp) :
-    m_playerName(playerName), m_force(initialForce)
+Player::Player(const char* playerName, unsigned int initialForce, unsigned int maxHp) :
+    m_force(initialForce), m_maxHp(maxHp), m_hp(maxHp)
 {
+    m_name = playerName;
     m_level = INITIAL_LEVEL;
     m_coins = INITIAL_COINS;
     if (maxHp <= MIN_HP) {
@@ -21,32 +21,32 @@ Player::Player(string playerName, unsigned int initialForce, unsigned int maxHp)
 
 void Player::printInfo() const
 {
-    printPlayerInfo(this.m_name, this.m_level, this.m_force, this.m_hp this.m_coins);
+    printPlayerInfo(this->m_name, this->m_level, this->m_force, this->m_hp, this->m_coins);
 }
 
 void Player::levelUp()
 {
-    this.m_level += this.m_level < TOP_LEVEL;
+    this->m_level += this->m_level < MAXIMUM_LEVEL;
 }
 
 int Player::getLevel() const
 {
-    return this.m_level;
+    return this->m_level;
 }
 
-void Player::buff(unsigned int forceToAdd)
+void Player::buff(unsigned int force)
 {
-    this.m_force += forceToAdd;
+    this->m_force += force;
 }
 
-void Player::heal(unsigned int hpToAdd)
+void Player::heal(unsigned int points)
 {
-    this.m_hp = min(this.m_hp + hpToAdd, this.m_maxHp);
+    this->m_hp = MIN(this->m_hp + points, this->m_maxHp);
 }
 
-void Player::damage(unsigned int hpToSubtract)
+void Player::damage(unsigned int points)
 {
-    this.m_hp = max(this.m_hp - hpToSubtract, MIN_HP);
+    this->m_hp = MAX(this->m_hp - points, MIN_HP);
 }
 
 bool Player::isKnockedOut() const
@@ -54,24 +54,19 @@ bool Player::isKnockedOut() const
     return m_hp == MIN_HP;
 }
 
-void addOrSubtractCoins(int coins)
+void Player::addCoins(int addedCoins)
 {
-    this.m_coins += coins;
-}
-
-void Player::addCoins(int coinsToAdd)
-{
-    if (coinsToAdd > 0) {
-        addOrSubtractCoins(coinsToAdd);
+    if (addedCoins > 0) {
+        m_coins += addedCoins;
     }
 }
 
-bool Player::pay(unsigned int price)
+bool Player::pay(int payment)
 {
-    if (this.m_coins - price < 0) {
+    if (this->m_coins - payment < 0) {
         return false;
     }
-    addOrSubtractCoins(-price);
+    m_coins -= payment;
     return true;
 }
 
@@ -79,14 +74,3 @@ int Player::getAttackStrength() const
 {
     return m_force + m_level;
 }
-
-
-
-
-
-
-
-
-
-
-

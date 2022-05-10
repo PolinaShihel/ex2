@@ -8,23 +8,15 @@
 #include <stdbool.h>
 #include "utilities.h"
 
-const int INITIAL_LEVEL = 1
+const int INITIAL_LEVEL = 1;
 const int DEFAULT_INITIAL_FORCE = 5;
 const int DEFAULT_MAX_HP = 100;
 const int INITIAL_COINS = 0;
 const int MAXIMUM_LEVEL = 10;
 const int MIN_HP = 0;
 
-using std::string;
+//using std::string;
 class Player {
-
-    string m_name;
-    unsigned int m_level;
-    unsigned int m_force;
-    unsigned int m_maxHp;
-    unsigned int m_hp;
-    unsigned int m_coins;
-
 public:
     /*
      * C'tor of Player class
@@ -35,7 +27,7 @@ public:
      * @return
      *      A new instance of Player.
     */
-    Player(string playerName, unsigned int initialForce = DEFAULT_INITIAL_FORCE, unsigned int maxHP = DEFAULT_MAX_HP);
+    Player(const char* playerName, unsigned int initialForce = DEFAULT_INITIAL_FORCE, unsigned int maxHP = DEFAULT_MAX_HP);
 
     /*
      * Copy C'tor od Player class
@@ -85,7 +77,7 @@ public:
      */
     int getLevel() const;
 
-    void buff(unsigned int forceToAdd);
+    void buff(unsigned int force);
 
     /*
      * Increases the player's health points by a given value.
@@ -94,7 +86,7 @@ public:
      * @return
      *      void.
      */
-    void heal(unsigned int hpToAdd);
+    void heal(unsigned int points);
 
     /*
      * Decreases the player's health points by a given amount.
@@ -103,7 +95,7 @@ public:
      * @return
      *      void.
      */
-    void damage(unsigned int hpToSubtract);
+    void damage(unsigned int points);
 
     /*
      * Checks to see is the player has run out of health points.
@@ -112,6 +104,7 @@ public:
      *      Whether the player has reached zero health points
      */
     bool isKnockedOut() const;
+
     /*
      * Increases number of coins a player has by a given amount.
      *
@@ -119,7 +112,7 @@ public:
      * @return
      *      void.
      */
-    void addCoins(int coinsToAdd);
+    void addCoins(int addedCoins);
 
     /*
      * Decreases the number of coins a player has by a given amount.
@@ -128,9 +121,18 @@ public:
      * @return
      *      Whether the payment was done successfully
      */
-    bool pay(unsigned int price);
+    bool pay(int payment);
 
-    void getAttackStrength() const;
+    int getAttackStrength() const;
+
+private:
+    //string m_name;
+    char* m_name;
+    unsigned int m_level;
+    unsigned int m_force;
+    unsigned int m_maxHp;
+    unsigned int m_hp;
+    unsigned int m_coins;
 
 };
 

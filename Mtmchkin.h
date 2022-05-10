@@ -13,7 +13,7 @@
  * Win - The player reached level 10.
  * Loss - The player's HP is 0.
 */
-enum class GameStatus{Win, Loss, MidGame};
+enum class GameStatus { Win, Loss, MidGame };
 
 class Mtmchkin {
 public:
@@ -29,6 +29,20 @@ public:
     */
     Mtmchkin(const char* playerName, const Card* cardsArray, int numOfCards);
 
+    /*
+     * D'tor of Mtmchkin class.
+     */
+    ~Mtmchkin() = default;
+
+    /*
+     * Assignment operator of Mtmchkin class.
+     *
+     * @param reference to a Mtmchkin object.
+     *@return
+     *      reference to a Mtmchkin object.
+     *
+     */
+    Mtmchkin& operator=(const Mtmchkin& other) = default;
 
     /*
      * Play the next Card - according to the instruction in the exercise document
@@ -57,11 +71,12 @@ public:
      */
     GameStatus getGameStatus() const;
 
-    //TODO: complete the Mtmchkin class.
-
 private:
-    //TODO: complete the Mtmchkin class.
-
+    Player m_player;
+    Card* m_cards;
+    int m_topCardIndex;
+    int m_cardsCount;
+    GameStatus m_gameStatus;
 };
 
 
