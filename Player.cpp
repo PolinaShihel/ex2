@@ -38,9 +38,27 @@ void Player::buff(int points) {
 void Player::heal(int points) {
     if(this->HP + points >= this->maxHP) {
         this->HP = this->maxHP;
+        return;
     }
     this->HP += points;
 }
+
+void Player::damage(int points) {
+    if(this->HP - points <= 0){
+        this->HP = 0;
+        return;
+    }
+    this->HP -= points;
+}
+
+bool Player::isKnockedOut() {
+    if(this->HP == 0){
+        return true;
+    }
+    return false;
+}
+
+
 
 
 

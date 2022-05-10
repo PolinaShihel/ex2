@@ -2,6 +2,7 @@
 #define EX2_PLAYER_H
 
 #include <string>
+#include <stdbool.h>
 #include "utilities.h"
 
 #define INITIAL_LEVEL 1
@@ -97,9 +98,15 @@ public:
      * @return
      *      void.
      */
-    void damage(in)
+    void damage(int points);
 
-
+    /*
+     * Checks to see is the player has run out of health points.
+     *
+     * @return
+     *      Whether the player has reached zero health points
+     */
+    bool isKnockedOut();
 
 
 
