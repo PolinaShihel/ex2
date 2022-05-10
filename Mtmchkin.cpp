@@ -25,7 +25,7 @@ void Mtmchkin::playNextCard()
 	topCard.printInfo();
 	topCard.applyEncounter(this->m_player);
 	this->m_player.printInfo();
-	m_topCardIndex = (++m_topCardIndex) % m_cardsCount;
+	this->m_topCardIndex = (++this->m_topCardIndex) % m_cardsCount;
 }
 
 bool Mtmchkin::isOver()
