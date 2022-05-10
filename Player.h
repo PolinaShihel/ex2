@@ -117,6 +117,15 @@ public:
      */
     void addCoins(int addedCoins);
 
+    /*
+     * Decreases the number of coins a player has by a given amount.
+     *
+     * @param payment - the number of coins to be taken from the player as payment
+     * @return
+     *      Whether the payment was done successfully
+     */
+
+
 
 
 
