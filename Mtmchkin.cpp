@@ -28,14 +28,14 @@ void Mtmchkin::playNextCard()
 	m_topCardIndex = (++m_topCardIndex) % m_cardsCount;
 }
 
-bool Mtmchkin::isOver() const
+bool Mtmchkin::isOver()
 {
 	if (m_player.getLevel() == MAXIMUM_LEVEL) {
-		this->m_gameStatus = GameStatus::Win;
+		m_gameStatus = GameStatus::Win;
 		return true;
 	}
 	if (m_player.isKnockedOut()) {
-		this->m_gameStatus = GameStatus::Loss;
+		m_gameStatus = GameStatus::Loss;
 		return true;
 	}
 
