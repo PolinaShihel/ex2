@@ -3,7 +3,7 @@
 
 #define MAXIMUM_LEVEL 10
 
-Mtmchkin::Mtmchkin(const char* playerName, const Card* cardsArray, int numOfCards) :
+Mtmchkin::Mtmchkin(const string playerName, const Card* cardsArray, int numOfCards) :
 	m_player(Player(playerName)), m_cards(cardsArray)
 {
 	m_cardsCount = numOfCards;
