@@ -1,5 +1,4 @@
 #include "Card.h"
-#include "Player.h"
 #include "Mtmchkin.h"
 
 #define MAXIMUM_LEVEL 10
@@ -26,7 +25,7 @@ void Mtmchkin::playNextCard()
 	m_topCardIndex = (++m_topCardIndex) % m_cardsCount;
 }
 
-bool Mtmchkin::isOver()
+bool Mtmchkin::isOver() const
 {
 	if (m_player.getLevel() == MAXIMUM_LEVEL) {
 		this->m_gameStatus = GameStatus::Win;

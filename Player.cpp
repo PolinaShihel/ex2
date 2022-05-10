@@ -5,11 +5,11 @@
 #define MAX(x,y) x > y ? x : y
 #define MIN(x,y) x < y ? x : y
 
-Player::Player(const char* playerName, unsigned int initialForce, unsigned int maxHp) :
+Player::Player(const char* playerName, int initialForce, int maxHp) :
     m_name(playerName), m_force(initialForce), m_maxHp(maxHp), m_hp(maxHp)
 {
     m_level = INITIAL_LEVEL;
-    m_coins = INITIAL_COINS;
+    m_coins = INITIAL_COINS;    
     if (maxHp <= MIN_HP) {
         m_maxHp = m_hp = DEFAULT_MAX_HP;
     }
@@ -33,17 +33,17 @@ int Player::getLevel() const
     return this->m_level;
 }
 
-void Player::buff(unsigned int force)
+void Player::buff(int force)
 {
-    this->m_force += force;
+    this->m_force += MAX(force, 0);
 }
 
-void Player::heal(unsigned int points)
+void Player::heal(int points)
 {
     this->m_hp = MIN(this->m_hp + points, this->m_maxHp);
 }
 
-void Player::damage(unsigned int points)
+void Player::damage(int points)
 {
     this->m_hp = MAX(this->m_hp - points, MIN_HP);
 }
@@ -55,9 +55,7 @@ bool Player::isKnockedOut() const
 
 void Player::addCoins(int addedCoins)
 {
-    if (addedCoins > 0) {
-        m_coins += addedCoins;
-    }
+    m_coins += MAX(addedCoins, 0);
 }
 
 bool Player::pay(int payment)

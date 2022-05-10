@@ -27,7 +27,7 @@ public:
      * @return
      *      A new instance of Player.
     */
-    Player(const char* playerName, unsigned int initialForce = DEFAULT_INITIAL_FORCE, unsigned int maxHP = DEFAULT_MAX_HP);
+    Player(const char* playerName, int initialForce = DEFAULT_INITIAL_FORCE, int maxHP = DEFAULT_MAX_HP);
 
     /*
      * Copy C'tor od Player class
@@ -77,7 +77,7 @@ public:
      */
     int getLevel() const;
 
-    void buff(unsigned int force);
+    void buff(int force);
 
     /*
      * Increases the player's health points by a given value.
@@ -86,7 +86,7 @@ public:
      * @return
      *      void.
      */
-    void heal(unsigned int points);
+    void heal(int points);
 
     /*
      * Decreases the player's health points by a given amount.
@@ -95,7 +95,7 @@ public:
      * @return
      *      void.
      */
-    void damage(unsigned int points);
+    void damage(int points);
 
     /*
      * Checks to see is the player has run out of health points.
