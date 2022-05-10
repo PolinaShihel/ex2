@@ -22,11 +22,7 @@ Player::Player(const string playerName, int maxHp, int initialForce) :
 
 void Player::printInfo() const
 {
-    int nameLength = this->m_name.length();
-    char* playerName = new char[nameLength + END_STRING];
-    strcpy(playerName, this->m_name.c_str());
-    printPlayerInfo(playerName, this->m_level, this->m_force, this->m_hp, this->m_coins);
-    delete[] playerName;
+    printPlayerInfo(this->m_name.c_str(), this->m_level, this->m_force, this->m_hp, this->m_coins);
 }
 
 void Player::levelUp()
