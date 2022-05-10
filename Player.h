@@ -120,6 +120,9 @@ public:
      */
     bool pay(int payment);
 
+    /*
+     * Returns player's attack strength, determined by the sum of his force & level
+     */
     int getAttackStrength() const;
 
 private:
