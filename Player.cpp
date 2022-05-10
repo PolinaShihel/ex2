@@ -3,6 +3,8 @@
 #include "player.h"
 
 using std::string;
+const int END_STRING = 1;
+
 #define MAX(x,y) x > y ? x : y
 #define MIN(x,y) x < y ? x : y
 
@@ -21,7 +23,11 @@ Player::Player(const string playerName, int initialForce, int maxHp) :
 
 void Player::printInfo() const
 {
-    printPlayerInfo(this->m_name, this->m_level, this->m_force, this->m_hp, this->m_coins);
+    int nameLength = this->m_name.length();
+    char* playerName = new char[nameLength+END_STRING];
+    strcpy(playerName, this->m_name.c_str());
+    printPlayerInfo(playerName, this->m_level, this->m_force, this->m_hp, this->m_coins);
+    delete[] playerName;
 }
 
 void Player::levelUp()
