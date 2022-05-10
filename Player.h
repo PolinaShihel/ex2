@@ -1,29 +1,41 @@
-#ifndef EX2_PLAYER_H
-#define EX2_PLAYER_H
+//
+// Created by Daniel_Meents on 07/04/2022.
+//
+#ifndef EX2_Player_H
+#define EX2_Player_H
 
 #include <string>
 #include <stdbool.h>
 #include "utilities.h"
 
-#define INITIAL_LEVEL 1
-#define INITIAL_COINS 0
-#define DEFAULT_FORCE 5
-#define DEFAULT_MAX_HP 100
-#define MAXIMUM_LEVEL 10
+const int INITIAL_LEVEL = 1
+const int DEFAULT_INITIAL_FORCE = 5;
+const int DEFAULT_MAX_HP = 100;
+const int INITIAL_COINS = 0;
+const int MAXIMUM_LEVEL = 10;
+const int MIN_HP = 0;
 
-
+using std::string;
 class Player {
+
+    string m_name;
+    unsigned int m_level;
+    unsigned int m_force;
+    unsigned int m_maxHp;
+    unsigned int m_hp;
+    unsigned int m_coins;
+
 public:
     /*
-    * C'tor of Player class
-    *
-    *@param playerName   - The name of the player being created.
-    * @param force - The initial force od the player.
-    * @param maxHP - The maximum value of health points for said player.
-    * @return
-    *      A new instance of Player.
-   */
-    Player(std::string playerName, force = DEFAULT_FORCE, int maxHP = DEFAULT_MAX_HP);
+     * C'tor of Player class
+     *
+     * @param playerName - The player's name.
+     * @param initialForce - The initial force of the player.
+     * @param maxHP - The maximum value of health points for said player.
+     * @return
+     *      A new instance of Player.
+    */
+    Player(string playerName, unsigned int initialForce = DEFAULT_INITIAL_FORCE, unsigned int maxHP = DEFAULT_MAX_HP);
 
     /*
      * Copy C'tor od Player class
@@ -32,7 +44,7 @@ public:
      * @return
      *      A new instance of Player.
      */
-    Player(const Player&) = default;
+    Player(const Player& player) = default;
 
     /*
      * D'tor of Player class.
@@ -50,28 +62,19 @@ public:
     Player& operator=(const Player& other) = default;
 
     /*
-     * Prints info od Player.
+     * Prints info of player:
      *
      * @return
-     *      void.
-     */
+     *      void
+    */
     void printInfo() const;
-
     /*
-     * Levels up the player by one level, if at maximum level (10) does nothing.
-     *
-     * @return
-     *       void.
-     */
+    * Levels up the player by one level, if at maximum level (10) does nothing.
+    *
+    * @return
+    *       void.
+    */
     void levelUp();
-
-    /*
-     * Returns the current level of the player.
-     *
-     * @return
-     *      current level.
-     */
-    int getLevel();
 
     /*
      * Increases player's force by given amount.
@@ -80,7 +83,9 @@ public:
      * @return
      *      void.
      */
-    void buff(int points);
+    int getLevel() const;
+
+    void buff(unsigned int forceToAdd);
 
     /*
      * Increases the player's health points by a given value.
@@ -89,7 +94,7 @@ public:
      * @return
      *      void.
      */
-    void heal(int points);
+    void heal(unsigned int hpToAdd);
 
     /*
      * Decreases the player's health points by a given amount.
@@ -98,7 +103,7 @@ public:
      * @return
      *      void.
      */
-    void damage(int points);
+    void damage(unsigned int hpToSubtract);
 
     /*
      * Checks to see is the player has run out of health points.
@@ -106,8 +111,7 @@ public:
      * @return
      *      Whether the player has reached zero health points
      */
-    bool isKnockedOut();
-
+    bool isKnockedOut() const;
     /*
      * Increases number of coins a player has by a given amount.
      *
@@ -115,7 +119,7 @@ public:
      * @return
      *      void.
      */
-    void addCoins(int addedCoins);
+    void addCoins(int coinsToAdd);
 
     /*
      * Decreases the number of coins a player has by a given amount.
@@ -124,19 +128,11 @@ public:
      * @return
      *      Whether the payment was done successfully
      */
+    bool pay(unsigned int price);
 
+    void getAttackStrength() const;
 
-
-
-
-private:
-    std::string name;
-    int level;
-    int force;
-    int maxHP;
-    int HP;
-    int coins;
 };
 
 
-#endif //EX2_PLAYER_H
+#endif //EX2_Player_H

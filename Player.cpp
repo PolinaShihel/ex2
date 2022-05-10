@@ -1,66 +1,85 @@
-#include "Player.h"
-typedef std::string string;
+#include <iostream>
+#include "utilities.h"
+#include "player.h"
 
-Player::Player(string playerName, int force, int maxHP) {
-    name = playerName;
-    level = INITIAL_LEVEL;
-    coins = INITIAL_COINS;
-    force = force;
-    maxHP = maxHP;
-    HP = maxHP;
-}
+using std::cout;
+using std::min;
+using std::max;
 
-void Player::printInfo() const {
-    cout<<"Player Details:";
-    cout<<"Name: "<< this->name;
-    cout<<"Level: "<< this->level;
-    cout<<"Force: "<< this->force;
-    cout<<"HP: "<< this->HP;
-    cout<<"Coins: "<< this->coins;
-    cout << LINE_DIVIDER << endl;
-}
-
-void Player::levelUp() {
-    if(this->level == MAXIMUM_LEVEL){
-        return;
+Player::Player(string playerName, unsigned int initialForce, unsigned int maxHp) :
+    m_playerName(playerName), m_force(initialForce)
+{
+    m_level = INITIAL_LEVEL;
+    m_coins = INITIAL_COINS;
+    if (maxHp <= MIN_HP) {
+        m_maxHp = m_hp = DEFAULT_MAX_HP;
     }
-    this->level += 1;
-}
-
-int Player::getLevel() {
-    return this->level;
-}
-
-void Player::buff(int points) {
-    this->force+=points;
-}
-
-void Player::heal(int points) {
-    if(this->HP + points >= this->maxHP) {
-        this->HP = this->maxHP;
-        return;
+    if (initialForce <= 0) {
+        m_force = DEFAULT_INITIAL_FORCE;
     }
-    this->HP += points;
 }
 
-void Player::damage(int points) {
-    if(this->HP - points <= 0){
-        this->HP = 0;
-        return;
+void Player::printInfo() const
+{
+    printPlayerInfo(this.m_name, this.m_level, this.m_force, this.m_hp this.m_coins);
+}
+
+void Player::levelUp()
+{
+    this.m_level += this.m_level < TOP_LEVEL;
+}
+
+int Player::getLevel() const
+{
+    return this.m_level;
+}
+
+void Player::buff(unsigned int forceToAdd)
+{
+    this.m_force += forceToAdd;
+}
+
+void Player::heal(unsigned int hpToAdd)
+{
+    this.m_hp = min(this.m_hp + hpToAdd, this.m_maxHp);
+}
+
+void Player::damage(unsigned int hpToSubtract)
+{
+    this.m_hp = max(this.m_hp - hpToSubtract, MIN_HP);
+}
+
+bool Player::isKnockedOut() const
+{
+    return m_hp == MIN_HP;
+}
+
+void addOrSubtractCoins(int coins)
+{
+    this.m_coins += coins;
+}
+
+void Player::addCoins(int coinsToAdd)
+{
+    if (coinsToAdd > 0) {
+        addOrSubtractCoins(coinsToAdd);
     }
-    this->HP -= points;
 }
 
-bool Player::isKnockedOut() {
-    if(this->HP == 0){
-        return true;
+bool Player::pay(unsigned int price)
+{
+    if (this.m_coins - price < 0) {
+        return false;
     }
-    return false;
+    addOrSubtractCoins(-price);
+    return true;
 }
 
-void Player::addCoins(int addedCoins) {
-    this->coins += addedCoins;
+int Player::getAttackStrength() const
+{
+    return m_force + m_level;
 }
+
 
 
 
