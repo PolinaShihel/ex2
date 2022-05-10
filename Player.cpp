@@ -6,9 +6,8 @@
 #define MIN(x,y) x < y ? x : y
 
 Player::Player(const char* playerName, unsigned int initialForce, unsigned int maxHp) :
-    m_force(initialForce), m_maxHp(maxHp), m_hp(maxHp)
+    m_name(playerName), m_force(initialForce), m_maxHp(maxHp), m_hp(maxHp)
 {
-    m_name = playerName;
     m_level = INITIAL_LEVEL;
     m_coins = INITIAL_COINS;
     if (maxHp <= MIN_HP) {

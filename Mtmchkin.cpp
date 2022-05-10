@@ -2,8 +2,10 @@
 #include "Player.h"
 #include "Mtmchkin.h"
 
+#define MAXIMUM_LEVEL 10
+
 Mtmchkin::Mtmchkin(const char* playerName, const Card* cardsArray, int numOfCards) :
-	m_player(Player(playerName)), m_cards(new Card[numOfCards])
+	m_player(Player(playerName)), m_cards(cardsArray)
 {
 	m_cardsCount = numOfCards;
 	m_topCardIndex = 0;
@@ -26,6 +28,14 @@ void Mtmchkin::playNextCard()
 
 bool Mtmchkin::isOver()
 {
-	return this->m_gameStatus != GameStatus::MidGame;
-}
+	if (m_player.getLevel() == MAXIMUM_LEVEL) {
+		this->m_gameStatus = GameStatus::Win;
+		return true;
+	}
+	if (m_player.isKnockedOut()) {
+		this->m_gameStatus = GameStatus::Loss;
+		return true;
+	}
 
+	return false;
+}

@@ -127,7 +127,7 @@ public:
 
 private:
     //string m_name;
-    char* m_name;
+    const char* m_name;
     unsigned int m_level;
     unsigned int m_force;
     unsigned int m_maxHp;

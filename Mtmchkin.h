@@ -73,7 +73,7 @@ public:
 
 private:
     Player m_player;
-    Card* m_cards;
+    const Card* m_cards;
     int m_topCardIndex;
     int m_cardsCount;
     GameStatus m_gameStatus;
