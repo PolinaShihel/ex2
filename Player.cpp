@@ -2,10 +2,11 @@
 #include "utilities.h"
 #include "player.h"
 
+using std::string;
 #define MAX(x,y) x > y ? x : y
 #define MIN(x,y) x < y ? x : y
 
-Player::Player(const char* playerName, int initialForce, int maxHp) :
+Player::Player(const string playerName, int initialForce, int maxHp) :
     m_name(playerName), m_force(initialForce), m_maxHp(maxHp), m_hp(maxHp)
 {
     m_level = INITIAL_LEVEL;

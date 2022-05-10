@@ -1,5 +1,4 @@
 #include "Card.h"
-#include "Player.h"
 
 Card::Card(CardType type, const CardStats& stats) : m_effect(type), m_stats(stats) 
 {

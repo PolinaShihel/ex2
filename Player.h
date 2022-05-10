@@ -1,10 +1,7 @@
-//
-// Created by Daniel_Meents on 07/04/2022.
-//
+
 #ifndef EX2_Player_H
 #define EX2_Player_H
 
-#include <string>
 #include <stdbool.h>
 #include "utilities.h"
 
@@ -15,7 +12,7 @@ const int INITIAL_COINS = 0;
 const int MAXIMUM_LEVEL = 10;
 const int MIN_HP = 0;
 
-//using std::string;
+using std::string;
 class Player {
 public:
     /*
@@ -27,7 +24,7 @@ public:
      * @return
      *      A new instance of Player.
     */
-    Player(const char* playerName, int initialForce = DEFAULT_INITIAL_FORCE, int maxHP = DEFAULT_MAX_HP);
+    Player(const string playerName, int initialForce = DEFAULT_INITIAL_FORCE, int maxHP = DEFAULT_MAX_HP);
 
     /*
      * Copy C'tor od Player class
@@ -126,8 +123,7 @@ public:
     int getAttackStrength() const;
 
 private:
-    //string m_name;
-    const char* m_name;
+    string m_name;
     unsigned int m_level;
     unsigned int m_force;
     unsigned int m_maxHp;
