@@ -108,6 +108,15 @@ public:
      */
     bool isKnockedOut();
 
+    /*
+     * Increases number of coins a player has by a given amount.
+     *
+     * @param addedCoins - The number of coins to be added to the player
+     * @return
+     *      void.
+     */
+    void addCoins(int addedCoins);
+
 
 
 

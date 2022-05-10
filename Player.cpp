@@ -58,6 +58,12 @@ bool Player::isKnockedOut() {
     return false;
 }
 
+void Player::addCoins(int addedCoins) {
+    this->coins += addedCoins;
+}
+
+
+
 
 
 
