@@ -129,8 +129,8 @@ private:
     string m_name;
     unsigned int m_level;
     unsigned int m_force;
-    unsigned int m_maxHp;
-    unsigned int m_hp;
+    int m_maxHp;
+    int m_hp;
     int m_coins;
 };
 

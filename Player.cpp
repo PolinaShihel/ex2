@@ -1,6 +1,6 @@
 #include <iostream>
 #include "utilities.h"
-#include "player.h"
+#include "Player.h"
 
 const int END_STRING = 1;
 
@@ -8,7 +8,7 @@ const int END_STRING = 1;
 #define MIN(x,y) x < y ? x : y
 
 Player::Player(const string playerName, int maxHp, int initialForce) :
-    m_name(playerName), m_force(initialForce), m_maxHp(maxHp), m_hp(maxHp)
+        m_name(playerName), m_force(initialForce), m_maxHp(maxHp), m_hp(maxHp)
 {
     m_level = INITIAL_LEVEL;
     m_coins = INITIAL_COINS;
@@ -42,12 +42,18 @@ void Player::buff(int force)
 
 void Player::heal(int points)
 {
-    this->m_hp = MIN(this->m_hp + points, this->m_maxHp);
+    if(points > 0)
+    {
+        this->m_hp = MIN(this->m_hp + points, this->m_maxHp);
+    }
 }
 
 void Player::damage(int points)
 {
-    this->m_hp = MAX(this->m_hp - points, MIN_HP);
+    if(points > 0)
+    {
+        this->m_hp = MAX((this->m_hp) - points, MIN_HP);
+    }
 }
 
 bool Player::isKnockedOut() const

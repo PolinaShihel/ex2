@@ -32,17 +32,27 @@ public:
     /*
      * D'tor of Mtmchkin class.
      */
-    ~Mtmchkin() = default;
+    ~Mtmchkin();
 
     /*
      * Assignment operator of Mtmchkin class.
      *
      * @param reference to a Mtmchkin object.
-     *@return
+     * @return
      *      reference to a Mtmchkin object.
      *
      */
     Mtmchkin& operator=(const Mtmchkin& other) = default;
+
+    /*
+     * Copy C'tor of Mtmchkin class.
+     *
+     * @param reference to a Mtmchkin object.
+     * @return
+     *      reference to a Mtmchkin object.
+     *
+     */
+    Mtmchkin(const Mtmchkin& mtmchkin) = default;
 
     /*
      * Play the next Card - according to the instruction in the exercise document
