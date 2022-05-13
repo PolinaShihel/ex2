@@ -7,6 +7,8 @@
 #include "Card.h"
 #include <iostream>
 
+const int MAXIMUM_LEVEL = 10;
+
 /*
  * GameStatus:
  * MidGame - The game is still active and the player continues to encounter cards.
@@ -37,7 +39,7 @@ public:
     /*
      * Assignment operator of Mtmchkin class.
      *
-     * @param reference to a Mtmchkin object.
+     * @param other - reference to a Mtmchkin object.
      * @return
      *      reference to a Mtmchkin object.
      *
@@ -47,12 +49,29 @@ public:
     /*
      * Copy C'tor of Mtmchkin class.
      *
-     * @param reference to a Mtmchkin object.
+     * @param mtmchkin - reference to a Mtmchkin object.
      * @return
      *      reference to a Mtmchkin object.
      *
      */
     Mtmchkin(const Mtmchkin& mtmchkin) = default;
+
+    /*
+     *  Get the status of the game:
+     *
+     *  @return
+     *          GameStatus - the current status of the running game
+     */
+    GameStatus getGameStatus() const;
+
+    /*
+     *  Set the status of the game.
+     *
+     *  @param newStatus - the value that the game's status is about to be set to.
+     *  @return
+     *      void
+     */
+    void setGameStatus(GameStatus newStatus);
 
     /*
      * Play the next Card - according to the instruction in the exercise document
@@ -62,7 +81,6 @@ public:
     */
     void playNextCard();
 
-
     /*
      *  Check if the game ended:
      *
@@ -70,16 +88,8 @@ public:
      *          True if the game ended
      *          False otherwise
      */
-    bool isOver();
+    bool isOver() const;
 
-
-    /*
-     *  Get the status of the game:
-     *
-     *  @return
-     *          GameStatus - the current status of the running game
-     */
-    GameStatus getGameStatus() const;
 
 private:
     Player m_player;
