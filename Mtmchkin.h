@@ -7,8 +7,6 @@
 #include "Card.h"
 #include <iostream>
 
-const int MAXIMUM_LEVEL = 10;
-
 /*
  * GameStatus:
  * MidGame - The game is still active and the player continues to encounter cards.
@@ -29,7 +27,7 @@ public:
      * @result
      *      An instance of Mtmchkin
     */
-    Mtmchkin(const string playerName, const Card* cardsArray, int numOfCards);
+    Mtmchkin(string playerName, const Card* cardsArray, int numOfCards);
 
     /*
      * D'tor of Mtmchkin class.
@@ -63,15 +61,6 @@ public:
      *          GameStatus - the current status of the running game
      */
     GameStatus getGameStatus() const;
-
-    /*
-     *  Set the status of the game.
-     *
-     *  @param newStatus - the value that the game's status is about to be set to.
-     *  @return
-     *      void
-     */
-    void setGameStatus(GameStatus newStatus);
 
     /*
      * Play the next Card - according to the instruction in the exercise document
