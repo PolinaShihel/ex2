@@ -34,7 +34,7 @@ static void battleEncounter(Player& player, const CardStats& stats)
  */
 static void buffEncounter(Player& player, const CardStats& stats)
 {
-    if(player.pay(stats.cost))
+    if (player.pay(stats.cost))
     {
         player.buff(stats.buff);
     }
@@ -50,7 +50,7 @@ static void buffEncounter(Player& player, const CardStats& stats)
  */
 static void healEncounter(Player& player, const CardStats& stats)
 {
-    if(player.pay(stats.cost))
+    if (player.pay(stats.cost))
     {
         player.heal(stats.heal);
     }
