@@ -8,7 +8,13 @@ static int max(int x, int y)
     return maxValue;
 }
 
-Player::Player(const string playerName, int maxHp, int initialForce) :
+static int min(int x, int y)
+{
+    int minValue = x < y ? x : y;
+    return minValue;
+}
+
+Player::Player(string playerName, int maxHp, int initialForce) :
     m_name(playerName), m_force(initialForce), m_maxHp(maxHp), m_hp(maxHp)
 {
     m_level = INITIAL_LEVEL;
@@ -43,15 +49,12 @@ void Player::buff(int force)
 
 void Player::heal(int points)
 {
-    this->m_hp = max(this->m_hp + points, this->m_hp);
+    this->m_hp = min(max(this->m_hp + points, 0), this->m_maxHp);
 }
 
 void Player::damage(int points)
 {
-    if (points > 0)
-    {
-        this->m_hp = max((this->m_hp) - points, MIN_HP);
-    }
+    this->m_hp = max(min((this->m_hp) - points, (this->m_hp)), MIN_HP);
 }
 
 bool Player::isKnockedOut() const
