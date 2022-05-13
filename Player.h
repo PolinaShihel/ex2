@@ -57,6 +57,7 @@ public:
      *      void
     */
     void printInfo() const;
+
     /*
     * Levels up the player by one level, if at maximum level (10) does nothing.
     *
@@ -74,6 +75,13 @@ public:
      */
     int getLevel() const;
 
+    /*
+    * Increases the player's force by a given value.
+    *
+    * @param force - the value that the force is to be increased by.
+    * @return
+    *      void.
+    */
     void buff(int force);
 
     /*
@@ -127,8 +135,8 @@ public:
 
 private:
     string m_name;
-    unsigned int m_level;
-    unsigned int m_force;
+    int m_level;
+    int m_force;
     int m_maxHp;
     int m_hp;
     int m_coins;
